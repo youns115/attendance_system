@@ -10,10 +10,10 @@ from firebase_admin import storage
 import numpy as np
 from datetime import datetime
 
-cred = credentials.Certificate("serviceAccountKey.json")
-firebase_admin.initialize_app(cred, {
-    'databaseURL': "",
-    'storageBucket': ""
+cred = credentials.Certificate("./venv/serviceAccountKey.json")
+firebase_admin.initialize_app(cred,{
+    'databaseURL':"https://attendancesystem-d8468-default-rtdb.europe-west1.firebasedatabase.app/",
+    'storageBucket':"attendancesystem-d8468.appspot.com"
 })
 
 bucket = storage.bucket()
@@ -77,7 +77,7 @@ while True:
                 imgBackground = cvzone.cornerRect(imgBackground, bbox, rt=0)
                 id = studentIds[matchIndex]
                 if counter == 0:
-                    cvzone.putTextRect(imgBackground, "Loading", (275, 400))
+                    cvzone.putTextRect(imgBackground, "Loading...", (275, 400))
                     cv2.imshow("Face Attendance", imgBackground)
                     cv2.waitKey(1)
                     counter = 1
